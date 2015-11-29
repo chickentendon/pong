@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 
 public class Paddle {
@@ -21,6 +22,25 @@ public class Paddle {
 		System.out.println(y);
 	}
 	
+	public void update(){
+		
+		
+		//repaint();
+	}
+	
+	public void pressed(int code){
+		if(code == up){
+			y += 1; 
+		} else if (code == down){
+			y -= 1;
+		}
+	}
+	
+	public void released(KeyEvent e){
+		
+		
+	}
+
 	private int getHeight(){
 		return height;
 	}

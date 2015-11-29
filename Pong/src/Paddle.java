@@ -8,7 +8,7 @@ public class Paddle {
 	private int x;
 	private int y;
 	private int width = 15;
-	private int height = 80;
+	private int height = 110;
 	private int up;
 	private int down;
 	private int moveY = 0;

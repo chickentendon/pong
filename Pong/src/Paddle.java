@@ -11,6 +11,8 @@ public class Paddle {
 	private int height = 80;
 	private int up;
 	private int down;
+	private int moveY = 0;
+
 
 
 	
@@ -23,22 +25,24 @@ public class Paddle {
 	}
 	
 	public void update(){
+		if(y < Pong.HEIGHT - height && y > 0){
+			y = y + moveY;
+		} else {
+			System.out.println("SHIIIT");
+		}
 		
-		
-		//repaint();
 	}
 	
 	public void pressed(int code){
 		if(code == up){
-			y += 1; 
+			moveY = 1; 
 		} else if (code == down){
-			y -= 1;
+			moveY = -1;
 		}
 	}
 	
-	public void released(KeyEvent e){
-		
-		
+	public void released(int code){
+		moveY = 0;		
 	}
 
 	private int getHeight(){

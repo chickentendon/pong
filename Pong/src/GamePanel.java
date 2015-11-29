@@ -32,6 +32,5 @@ public class GamePanel extends JPanel {
     	super.paintComponent(g);
     	player1.paint(g);
     	player2.paint(g);
-    }
-    
+    }    
 }

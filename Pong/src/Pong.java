@@ -3,7 +3,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 public class Pong extends JFrame {
-    private final static int WIDTH = 700, HEIGHT = 450;
+    private final static int WIDTH = 700, HEIGHT = 500;
     private GamePanel panel;
 
     public Pong() {

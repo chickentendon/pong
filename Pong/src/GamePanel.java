@@ -16,6 +16,10 @@ public class GamePanel extends JPanel implements KeyListener {
     private int score1, score2;
     public Timer timer;
 
+    /**
+     * Makes GamePanel
+     * @param game
+     */
     public GamePanel(Pong game) {
         setBackground(Color.BLACK);
         setForeground(Color.BLACK);
@@ -54,6 +58,13 @@ public class GamePanel extends JPanel implements KeyListener {
     	player2.update();
     }
     
+    static public Paddle getP1() {
+    	return player1;
+    }
+    
+    static public Paddle getP2() {
+    	return player2;
+    }
     
     @Override
     public void paintComponent(Graphics g){

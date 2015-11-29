@@ -11,7 +11,9 @@ public class Paddle {
 	private int height = 110;
 	private int up;
 	private int down;
-	private int moveY = 0;
+	private int P1moveY = 0;
+	private int P2moveY = 0;
+
 
 
 
@@ -25,24 +27,38 @@ public class Paddle {
 	}
 	
 	public void update(){
-		if(y < Pong.HEIGHT - height && y > 0){
-			y = y + moveY;
-		} else {
+		if(this.equals(GamePanel.getP1()) && y < Pong.HEIGHT - height && y > 0){
+			y = y + P1moveY;
+		} 
+		else if(this.equals(GamePanel.getP2()) && y < Pong.HEIGHT - height && y > 0){
+			y = y + P2moveY;
+		} 
+		else {
 			System.out.println("SHIIIT");
 		}
 		
 	}
 	
 	public void pressed(int code){
-		if(code == up){
-			moveY = 1; 
-		} else if (code == down){
-			moveY = -1;
+		if(code == up && this.equals(GamePanel.getP1())){
+			P1moveY = 1; 
+		} else if (code == down && this.equals(GamePanel.getP1())){
+			P1moveY = -1;
+		} 
+		
+		else if(code == up && this.equals(GamePanel.getP2())){
+			P2moveY = 1; 
+		} else if (code == down && this.equals(GamePanel.getP2())){
+			P2moveY = -1;
 		}
 	}
 	
 	public void released(int code){
-		moveY = 0;		
+		if((code == up || code == down)  && this.equals(GamePanel.getP1())){
+			P1moveY = 0; 
+		} else if ((code ==up || code == down) && this.equals(GamePanel.getP2())){
+			P2moveY = 0;
+		} 		
 	}
 
 	private int getHeight(){

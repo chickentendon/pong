@@ -21,8 +21,8 @@ public class GamePanel extends JPanel {
         //ball = new Ball(game);
         player1 = new Paddle(20, 20, 20);
         player2 = new Paddle(Pong.WIDTH - 40, 20, 20);
-        Timer timer = new Timer(5, this);
-        timer.start();
+        //Timer timer = new Timer(5, this);
+        //timer.start();
         //addKeyListener(this);
         setFocusable(true);
     }

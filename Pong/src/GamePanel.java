@@ -11,7 +11,7 @@ import java.util.*;
 
 public class GamePanel extends JPanel implements KeyListener {
     private Pong game;
-    private Ball ball;
+    static private Ball ball;
     static private Paddle player1, player2;
     private int score1, score2;
     public Timer timer;
@@ -24,9 +24,10 @@ public class GamePanel extends JPanel implements KeyListener {
         setBackground(Color.BLACK);
         setForeground(Color.BLACK);
         this.game = game;
-        //ball = new Ball(game);
+        ball = new Ball();
         player1 = new Paddle(20, 83, 87);
         player2 = new Paddle(Pong.WIDTH - 40, 40, 38);
+        
         
         timer = new Timer(3, new ActionListener() {
         	public void actionPerformed(ActionEvent e){
@@ -36,6 +37,7 @@ public class GamePanel extends JPanel implements KeyListener {
         });//Speed Altering on Timer
         
         timer.start();
+        
         
         addKeyListener(this);
         setFocusable(true);
@@ -56,6 +58,7 @@ public class GamePanel extends JPanel implements KeyListener {
     static public void update(){
     	player1.update();
     	player2.update();
+    	ball.update();
     }
     
     static public Paddle getP1() {
@@ -71,6 +74,7 @@ public class GamePanel extends JPanel implements KeyListener {
     	super.paintComponent(g);
     	player1.paint(g);
     	player2.paint(g);
+    	ball.paint(g);
     }
 
 	@Override

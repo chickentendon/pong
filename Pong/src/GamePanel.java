@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements KeyListener {
         player1 = new Paddle(20, 83, 87);
         player2 = new Paddle(Pong.WIDTH - 40, 40, 38);
         
-        timer = new Timer(4, new ActionListener() {
+        timer = new Timer(3, new ActionListener() {
         	public void actionPerformed(ActionEvent e){
             	update();
             	repaint();

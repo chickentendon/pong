@@ -41,17 +41,42 @@ public class Paddle {
 	
 	public void pressed(int code){
 		
-			System.out.println("if" + this.y);
+			System.out.println("if // y= " + this.y);
 			if(code == up && this.equals(GamePanel.getP1())){
-				P1moveY = 1; 
+				if (this.y + this.height > Pong.HEIGHT - 20)
+				{
+					P1moveY = 0;
+				} else {
+					P1moveY = 1; 
+				}
+				
 			} else if (code == down && this.equals(GamePanel.getP1())){
-				P1moveY = -1;
+				if  (this.y < 20) {
+					P1moveY = 0;
+				}
+				else {
+					P1moveY = -1;
+				}
 			} 
 		
 			else if(code == up && this.equals(GamePanel.getP2())){
-				P2moveY = 1; 
+				System.out.println("P2 up -> y + height = " + (this.y + this.height));
+				if (this.y + this.height > 450)
+				{
+					P2moveY = 0;
+				} else {
+					P2moveY = 1; 
+				}
+			
 			} else if (code == down && this.equals(GamePanel.getP2())){
-				P2moveY = -1;
+				System.out.println("P2 down -> y= " + this.y);
+				if  (this.y < 20) {
+					P2moveY = 0;
+				}
+				else {
+					P2moveY = -1;
+				}
+				
 			}
 //		} else {
 //			System.out.println("else " + this.y + " HEIGHT " + Pong.HEIGHT);

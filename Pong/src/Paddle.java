@@ -27,10 +27,10 @@ public class Paddle {
 	}
 	
 	public void update(){
-		if(this.equals(GamePanel.getP1()) && y < Pong.HEIGHT - height && y > 0){
+		if(this.equals(GamePanel.getP1()) /*&& this.y > 0 && (this.y + this.height) < Pong.HEIGHT*/){
 			y = y + P1moveY;
 		} 
-		else if(this.equals(GamePanel.getP2()) && y < Pong.HEIGHT - height && y > 0){
+		else if(this.equals(GamePanel.getP2()) /*&& y < Pong.HEIGHT - height && y > 0*/){
 			y = y + P2moveY;
 		} 
 		else {
@@ -40,17 +40,24 @@ public class Paddle {
 	}
 	
 	public void pressed(int code){
-		if(code == up && this.equals(GamePanel.getP1())){
-			P1moveY = 1; 
-		} else if (code == down && this.equals(GamePanel.getP1())){
-			P1moveY = -1;
-		} 
 		
-		else if(code == up && this.equals(GamePanel.getP2())){
-			P2moveY = 1; 
-		} else if (code == down && this.equals(GamePanel.getP2())){
-			P2moveY = -1;
-		}
+			System.out.println("if" + this.y);
+			if(code == up && this.equals(GamePanel.getP1())){
+				P1moveY = 1; 
+			} else if (code == down && this.equals(GamePanel.getP1())){
+				P1moveY = -1;
+			} 
+		
+			else if(code == up && this.equals(GamePanel.getP2())){
+				P2moveY = 1; 
+			} else if (code == down && this.equals(GamePanel.getP2())){
+				P2moveY = -1;
+			}
+//		} else {
+//			System.out.println("else " + this.y + " HEIGHT " + Pong.HEIGHT);
+//			P1moveY = 0;
+//			P2moveY = 0;
+	
 	}
 	
 	public void released(int code){
@@ -60,6 +67,15 @@ public class Paddle {
 			P2moveY = 0;
 		} 		
 	}
+	
+//	private boolean checkInBounds(){
+//		if(){
+//			
+//			return true;
+//		}
+//		
+//		return false;
+//	}
 
 	private int getHeight(){
 		return height;

@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 public class Pong extends JFrame {
 
     public final static int WIDTH = 700, HEIGHT = 500;
-    private GamePanel panel;
+    private static GamePanel panel;
 
     public Pong() {
         setSize(WIDTH, HEIGHT);

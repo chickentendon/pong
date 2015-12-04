@@ -8,8 +8,8 @@ public class Ball {
 	private double x;
 	private double y;
 	private int width = 15;
-	double xi = 1; 
-	double yi = 1;
+	double xi = 0.1; 
+	double yi = 0.1;
 	
 	public Ball(){
 		this.x = x;
@@ -23,23 +23,23 @@ public class Ball {
 		y += yi;		
 			
 		checkSurfaces();	
-	
+
 	}
 	
 	private void checkSurfaces(){
 		checkTopBottom();
 		checkPaddles();
-		//checkLeftRight();
+		checkForScore();
 	}
 	
 	
 	public void checkTopBottom(){
 		if (y > 485) {  //Check Bottom
-			System.out.println("hey");
-			yi = -1;
+			
+			yi = -0.1;
 		}
 		if (y <= 0) { // CHeck Top
-			yi = 1;
+			yi = 0.1;
 		}
 	}
 	
@@ -53,64 +53,41 @@ public class Ball {
 		Rectangle ballBounds = new Rectangle((int)GamePanel.getBall().x, (int) GamePanel.getBall().y, GamePanel.getBall().width, GamePanel.getBall().width);
 		
 		if (p2Bounds.intersects(ballBounds)) {
-			System.out.println("INTERSECTION");
-			xi = -1;
+			xi = -0.1;
 		}
 		if (p1Bounds.intersects(ballBounds)) {
-			System.out.println("INTERSECTION");
-			xi = 1;
+			xi = 0.1;
 		}
 		
 	}
 	
-	public void checkLeftRight(){
-		if(x < GamePanel.WIDTH){
-			resetBall();			
-		}
-		if(x < 5){
+	public void checkForScore(){
+		if(GamePanel.getBall().x > 700){
+			GamePanel.increaseScore(1);
+			System.out.println("Player 1 : " + GamePanel.P1Score + "\nPlayer 2 : " + GamePanel.P2Score +"\n");
 			resetBall();
-			
+		}
+		else if(GamePanel.getBall().x < 5){
+			GamePanel.increaseScore(2);
+			System.out.println("Player 1 : " + GamePanel.P1Score + "\nPlayer 2 : " + GamePanel.P2Score + "\n");
+			resetBall();
+		}
+		else {
+			//System.out.println("No Score");
 		}
 	}
 	
 	private void resetBall() {
 		x = (Pong.WIDTH / 2);
 		y = (Pong.HEIGHT / 2);
+		
+		GamePanel.timer.stop();
 	}
-
-	
-	
-	
-	 private double invertDouble(double i){
-		 i *= -1;
-		 return i;
-	 }
-	
-//	public void checkLeftRight(){
-//		if(hit left or right){
-//			add point to player
-//			reset ball to middle
-//		} else {
-//			continue on path
-//		}
-//		
-//	}
-//	
-//	public boolean checkPaddle(){
-//		if(we hit the paddle){
-//			change path
-//		} else {
-//			continue on path
-//		}
-//	}
-//	
-//	public void fireBall(){
-//		
-//	}
 	
 	public void paint(Graphics g){		
 		g.setColor(Color.RED);
 		g.fillRect((int)this.x,  (int)this.y, width, width);
 	}
+
 
 }

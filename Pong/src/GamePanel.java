@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.AbstractAction;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import java.util.*;
@@ -14,7 +15,7 @@ public class GamePanel extends JPanel implements KeyListener {
     static private Ball ball;
     static public Paddle player1, player2;
     private int score1, score2;
-    public Timer timer;
+    public static Timer timer;
     static public int P1Score = 0;
     static public int P2Score = 0;
     
@@ -31,8 +32,7 @@ public class GamePanel extends JPanel implements KeyListener {
         player1 = new Paddle(20, 83, 87);
         player2 = new Paddle(Pong.WIDTH - 40, 40, 38);
         
-        
-        timer = new Timer(1000/60, new ActionListener() {
+        timer = new Timer(1, new ActionListener() {
         	public void actionPerformed(ActionEvent e){
             	update();
             	repaint();
@@ -40,6 +40,8 @@ public class GamePanel extends JPanel implements KeyListener {
         });//Speed Altering on Timer
         
         timer.start();
+        
+        
         addKeyListener(this);
         setFocusable(true);
     }
@@ -54,7 +56,6 @@ public class GamePanel extends JPanel implements KeyListener {
     }
     
     public void keyPressed(KeyEvent e){
-    	//System.out.println(e.getKeyCode());
     	player1.pressed(e.getKeyCode());
     	player2.pressed(e.getKeyCode());
     }

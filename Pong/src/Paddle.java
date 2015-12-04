@@ -34,14 +34,14 @@ public class Paddle {
 			y = y + P2moveY;
 		} 
 		else {
-			System.out.println("SHIIIT");
+			//System.out.println("SHIIIT");
 		}
 		
 	}
 	
 	public void pressed(int code){
 		
-			System.out.println("if // y= " + this.y);
+			//System.out.println("if // y= " + this.y);
 			if(code == up && this.equals(GamePanel.getP1())){
 				if (this.y + this.height > Pong.HEIGHT - 20)
 				{
@@ -60,7 +60,7 @@ public class Paddle {
 			} 
 		
 			else if(code == up && this.equals(GamePanel.getP2())){
-				System.out.println("P2 up -> y + height = " + (this.y + this.height));
+				//System.out.println("P2 up -> y + height = " + (this.y + this.height));
 				if (this.y + this.height > 450)
 				{
 					P2moveY = 0;
@@ -69,7 +69,7 @@ public class Paddle {
 				}
 			
 			} else if (code == down && this.equals(GamePanel.getP2())){
-				System.out.println("P2 down -> y= " + this.y);
+				//System.out.println("P2 down -> y= " + this.y);
 				if  (this.y < 20) {
 					P2moveY = 0;
 				}
@@ -102,27 +102,27 @@ public class Paddle {
 //		return false;
 //	}
 
-	private int getHeight(){
+	public int getHeight(){
 		return height;
 	}
 	
-	private int getWidth(){
+	public int getWidth(){
 		return width;
 	}
 	
-	private int getX(){
+	public int getX(){
 		return x;
 	}
 	
-	private int getY(){
+	public int getY(){
 	 return y;
 	}
 	
-	private int getUP(){
+	public int getUP(){
 		 return up;
 	}
 	
-	private int getDOWN(){
+	public int getDOWN(){
 		 return down;
 	}
 	

@@ -12,10 +12,13 @@ import java.util.*;
 public class GamePanel extends JPanel implements KeyListener {
     private Pong game;
     static private Ball ball;
-    static private Paddle player1, player2;
+    static public Paddle player1, player2;
     private int score1, score2;
     public Timer timer;
-
+    static public int P1Score = 0;
+    static public int P2Score = 0;
+    
+    
     /**
      * Makes GamePanel
      * @param game
@@ -29,7 +32,7 @@ public class GamePanel extends JPanel implements KeyListener {
         player2 = new Paddle(Pong.WIDTH - 40, 40, 38);
         
         
-        timer = new Timer(3, new ActionListener() {
+        timer = new Timer(1000/60, new ActionListener() {
         	public void actionPerformed(ActionEvent e){
             	update();
             	repaint();
@@ -37,15 +40,21 @@ public class GamePanel extends JPanel implements KeyListener {
         });//Speed Altering on Timer
         
         timer.start();
-        
-        
         addKeyListener(this);
         setFocusable(true);
     }
     
+    static public void increaseScore(int i) {
+    	if (i == 1) {
+    		P1Score++;
+    	}
+    	else {
+    		P2Score++;
+    	}
+    }
     
     public void keyPressed(KeyEvent e){
-    	System.out.println(e.getKeyCode());
+    	//System.out.println(e.getKeyCode());
     	player1.pressed(e.getKeyCode());
     	player2.pressed(e.getKeyCode());
     }
@@ -59,6 +68,11 @@ public class GamePanel extends JPanel implements KeyListener {
     	player1.update();
     	player2.update();
     	ball.update();
+    }
+    
+    static public Ball getBall()
+    {
+    	return ball;
     }
     
     static public Paddle getP1() {

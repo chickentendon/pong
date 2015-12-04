@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -8,6 +9,9 @@ import java.awt.event.KeyListener;
 import javax.swing.AbstractAction;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+
+
 import java.util.*;
 
 public class GamePanel extends JPanel implements KeyListener {
@@ -27,15 +31,18 @@ public class GamePanel extends JPanel implements KeyListener {
     public GamePanel(Pong game) {
         setBackground(Color.BLACK);
         setForeground(Color.BLACK);
+        setDoubleBuffered(true);
+        System.setProperty("sun.java2d.d3d", "True");
         this.game = game;
         ball = new Ball();
         player1 = new Paddle(20, 83, 87);
         player2 = new Paddle(Pong.WIDTH - 40, 40, 38);
-        
-        timer = new Timer(1, new ActionListener() {
+    	
+        timer = new Timer(5, new ActionListener() {
         	public void actionPerformed(ActionEvent e){
             	update();
             	repaint();
+            	Toolkit.getDefaultToolkit().sync();
             }
         });//Speed Altering on Timer
         

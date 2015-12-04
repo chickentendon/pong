@@ -10,13 +10,15 @@ public class Pong extends JFrame {
     public Pong() {
         setSize(WIDTH, HEIGHT);
         setTitle("Pong");
+        System.setProperty("sun.java2d.d3d", "True"); 
         setBackground(Color.WHITE);
         setVisible(true);
         setResizable(false);        
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         panel = new GamePanel(this);
         add(panel);
-    }
+        //pack();
+           }
 
     public GamePanel getPanel() {
         return panel;

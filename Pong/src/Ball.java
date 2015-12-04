@@ -8,8 +8,8 @@ public class Ball {
 	private double x;
 	private double y;
 	private int width = 15;
-	double xi = 0.1; 
-	double yi = 0.1;
+	double xi = 1; 
+	double yi = 1;
 	
 	public Ball(){
 		this.x = x;
@@ -35,11 +35,10 @@ public class Ball {
 	
 	public void checkTopBottom(){
 		if (y > 485) {  //Check Bottom
-			
-			yi = -0.1;
+			yi = -1;
 		}
-		if (y <= 0) { // CHeck Top
-			yi = 0.1;
+		if (y <= 0) { // Check Top
+			yi = 1;
 		}
 	}
 	
@@ -53,10 +52,10 @@ public class Ball {
 		Rectangle ballBounds = new Rectangle((int)GamePanel.getBall().x, (int) GamePanel.getBall().y, GamePanel.getBall().width, GamePanel.getBall().width);
 		
 		if (p2Bounds.intersects(ballBounds)) {
-			xi = -0.1;
+			xi = -1;
 		}
 		if (p1Bounds.intersects(ballBounds)) {
-			xi = 0.1;
+			xi = 1;
 		}
 		
 	}

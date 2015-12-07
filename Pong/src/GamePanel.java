@@ -10,10 +10,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.InputStream;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 
 public class GamePanel extends JPanel implements KeyListener {
     private Pong game;
@@ -22,8 +23,9 @@ public class GamePanel extends JPanel implements KeyListener {
     public static Timer timer;
     static public int P1Score = 0;
     static public int P2Score = 0;
-    //InputStream is = this.getResourceAsStream();
-    //Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+	Font ttfBase = null;
+	Font ttfReal = null;
+
     
     /**
      * Makes GamePanel
@@ -33,7 +35,14 @@ public class GamePanel extends JPanel implements KeyListener {
         setBackground(Color.BLACK);
         setForeground(Color.BLACK);
         setDoubleBuffered(true);
-
+        try {
+    		InputStream myStream = new BufferedInputStream(new FileInputStream("Roboto-Thin.ttf"));
+    		ttfBase = Font.createFont(Font.TRUETYPE_FONT, myStream);
+    		ttfReal = ttfBase.deriveFont(Font.PLAIN, 350);
+    	} catch (Exception ex) {
+            ex.printStackTrace();
+            System.err.println("Roboto not loaded.");
+        }
         //System.setProperty("sun.java2d.d3d", "True");
         this.game = game;
         ball = new Ball();
@@ -96,16 +105,15 @@ public class GamePanel extends JPanel implements KeyListener {
     
     @Override
     public void paintComponent(Graphics g){
-    	
     	Graphics2D g2d = (Graphics2D)g;
     	g2d.setRenderingHint(
     	        RenderingHints.KEY_TEXT_ANTIALIASING,
     	        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
     	super.paintComponent(g2d);
     	g2d.setColor(Color.GRAY);
-    	g2d.setFont(new Font("SansSerif", Font.BOLD, 300));
-    	g2d.drawString(P1Score + "", 100 , 350);
-    	g2d.drawString(P2Score + "", 400, 350);
+    	g2d.setFont(ttfReal);
+    	g2d.drawString(P1Score + "", 75 , 350);
+    	g2d.drawString(P2Score + "", 425, 350);
     	g2d.setColor(Color.WHITE);
     	g2d.drawLine(Pong.getPanel().getWidth()/2,20,Pong.getPanel().getWidth()/2,Pong.getPanel().getHeight()-20);
     	player1.paint(g2d);

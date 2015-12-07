@@ -16,17 +16,14 @@ public class Ball {
 	 * sets the position and the size
 	 */
 	public Ball(){
-		this.x = x;
-		this.y = y;
-		x = (Pong.WIDTH / 2);
-		y = (Pong.HEIGHT / 2);
+		x = ((Pong.WIDTH - 13) / 2);
+		y = ((Pong.HEIGHT) / 2);
 	}
 	
 	//Moves the ball and checks all the bounds
 	public void update() {	
 		x += xi;
 		y += yi;		
-		
 		checkSurfaces();	
 	}
 	
@@ -90,8 +87,8 @@ public class Ball {
 	
 	//Private helper to reset the ball back to the center
 	private void resetBall() {
-		x = ((Pong.WIDTH / 2) - 7);
-		y = ((Pong.HEIGHT / 2) - 7);
+		x = ((Pong.getPanel().getWidth() / 2) - 7);
+		y = ((Pong.getPanel().getHeight() / 2));
 		Paddle.swapper = 1;
 		GamePanel.timer.stop();
 	}

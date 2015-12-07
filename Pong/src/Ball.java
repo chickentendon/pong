@@ -5,8 +5,8 @@ import java.awt.Rectangle;
 
 
 public class Ball {
-	private double x;
-	private double y;
+	private static double x;
+	private static double y;
 	private int width = 15;
 	double xi = 1; 
 	double yi = 1;
@@ -86,7 +86,7 @@ public class Ball {
 	}
 	
 	//Private helper to reset the ball back to the center
-	private void resetBall() {
+	public static void resetBall() {
 		x = ((Pong.getPanel().getWidth() / 2) - 7);
 		y = ((Pong.getPanel().getHeight() / 2));
 		Paddle.swapper = 1;

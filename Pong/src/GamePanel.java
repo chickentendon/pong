@@ -113,7 +113,7 @@ public class GamePanel extends JPanel implements KeyListener {
     	g2d.setColor(Color.GRAY);
     	g2d.setFont(ttfReal);
     	g2d.drawString(P1Score + "", 75 , 350);
-    	g2d.drawString(P2Score + "", 425, 350);
+    	g2d.drawString(P2Score + "", 435, 350);
     	g2d.setColor(Color.WHITE);
     	g2d.drawLine(Pong.getPanel().getWidth()/2,20,Pong.getPanel().getWidth()/2,Pong.getPanel().getHeight()-20);
     	player1.paint(g2d);

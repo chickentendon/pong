@@ -26,7 +26,6 @@ public class Paddle {
 	
 	public void update(){
 		
-		//System.out.println("Paddle.update()");
 		if(this.equals(GamePanel.getP1())){
 			y = y + P1moveY;
 		} 

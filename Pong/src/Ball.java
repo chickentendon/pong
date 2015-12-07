@@ -8,8 +8,8 @@ public class Ball {
 	private double x;
 	private double y;
 	private int width = 15;
-	double xi = 1.25; 
-	double yi = 1.25;
+	double xi = 1; 
+	double yi = 1;
 	
 	/*
 	 * Constructor for the Ball
@@ -41,10 +41,10 @@ public class Ball {
 	//Checks the top and bottom to see if the ball is in bounds
 	public void checkTopBottom(){
 		if (y >= Pong.getPanel().getHeight() - width) {  //Check Bottom
-			yi = -1.25;
+			yi = -1;
 		}
 		if (y <= 0) { // Check Top
-			yi = 1.25;
+			yi = 1;
 		}
 	}
 	
@@ -62,12 +62,12 @@ public class Ball {
 		
 		//Checking Paddle 2, if it is in contact swap directions
 		if (p2Bounds.intersects(ballBounds)) {
-			xi = -1.25;
+			xi = -1;
 		}
 		//Checking Paddle 1, if it is in contact swap directions
 		if (p1Bounds.intersects(ballBounds)) {
-			xi = 1.25;
-		}		
+			xi = 1;
+		}
 	}
 
 	//Checking to see if there was a score, and if so reset the ball and increase the proper score	

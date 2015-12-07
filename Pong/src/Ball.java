@@ -92,7 +92,7 @@ public class Ball {
 	private void resetBall() {
 		x = ((Pong.WIDTH / 2) - 7);
 		y = ((Pong.HEIGHT / 2) - 7);
-		
+		Paddle.swapper = 1;
 		GamePanel.timer.stop();
 	}
 	

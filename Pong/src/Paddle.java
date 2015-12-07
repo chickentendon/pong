@@ -14,7 +14,7 @@ public class Paddle {
 	private int space = 32;
 	private int P1moveY = 0;
 	private int P2moveY = 0;
-	public int swapper = 1;
+	public static int swapper = 1;
 
 	public Paddle(int x, int up, int down){
 		this.x = x;

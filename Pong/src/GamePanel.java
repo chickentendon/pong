@@ -64,7 +64,7 @@ public class GamePanel extends JPanel implements KeyListener {
     }
     
     public void keyPressed(KeyEvent e){
-    	System.out.println("keypressed");
+    	System.out.println(e.getKeyCode());
     	player1.pressed(e.getKeyCode());
     	player2.pressed(e.getKeyCode());
     }

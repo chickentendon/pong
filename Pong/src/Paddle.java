@@ -12,6 +12,7 @@ public class Paddle {
 	private int up;
 	private int down;
 	private int space = 32;
+	private int n = 78;
 	private int P1moveY = 0;
 	private int P2moveY = 0;
 	public static int swapper = 1;
@@ -38,6 +39,13 @@ public class Paddle {
 	}
 	
 	public void pressed(int code){
+		if(code == n){
+			GamePanel.P1Score = 0;
+			GamePanel.P2Score = 0;
+			Ball.resetBall();
+			GamePanel.timer.start();
+			//GamePanel.timer.stop();
+		}
 		
 		if(code == space && swapper == 1){
 			swapper = 2;

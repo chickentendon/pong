@@ -48,7 +48,7 @@ public class GamePanel extends JPanel implements KeyListener {
             }
         });//Speed Altering on Timer
         
-        timer.start();
+        //timer.start();
         
         addKeyListener(this);
         setFocusable(true);

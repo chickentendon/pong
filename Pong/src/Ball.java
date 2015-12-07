@@ -8,8 +8,8 @@ public class Ball {
 	private double x;
 	private double y;
 	private int width = 15;
-	double xi = 1; 
-	double yi = 1;
+	double xi = 1.25; 
+	double yi = 1.25;
 	
 	public Ball(){
 		this.x = x;
@@ -21,24 +21,23 @@ public class Ball {
 	public void update() {	
 		x += xi;
 		y += yi;		
-			
+		
 		checkSurfaces();	
-
 	}
 	
 	private void checkSurfaces(){
+		//System.out.println("Bottom of ball: " + (GamePanel.getBall().y + 15));
 		checkTopBottom();
 		checkPaddles();
 		checkForScore();
 	}
 	
-	
 	public void checkTopBottom(){
-		if (y > 485) {  //Check Bottom
-			yi = -1;
+		if (y >= Pong.getPanel().getHeight() - width) {  //Check Bottom
+			yi = -1.25;
 		}
 		if (y <= 0) { // Check Top
-			yi = 1;
+			yi = 1.25;
 		}
 	}
 	
@@ -52,10 +51,10 @@ public class Ball {
 		Rectangle ballBounds = new Rectangle((int)GamePanel.getBall().x, (int) GamePanel.getBall().y, GamePanel.getBall().width, GamePanel.getBall().width);
 		
 		if (p2Bounds.intersects(ballBounds)) {
-			xi = -1;
+			xi = -1.25;
 		}
 		if (p1Bounds.intersects(ballBounds)) {
-			xi = 1;
+			xi = 1.25;
 		}
 		
 	}
@@ -77,8 +76,8 @@ public class Ball {
 	}
 	
 	private void resetBall() {
-		x = (Pong.WIDTH / 2);
-		y = (Pong.HEIGHT / 2);
+		x = ((Pong.WIDTH / 2) - 7);
+		y = ((Pong.HEIGHT / 2) - 7);
 		
 		GamePanel.timer.stop();
 	}

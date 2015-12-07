@@ -1,24 +1,20 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import javax.swing.AbstractAction;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-
-
-
-import java.util.*;
 
 public class GamePanel extends JPanel implements KeyListener {
     private Pong game;
     static private Ball ball;
     static public Paddle player1, player2;
-    private int score1, score2;
     public static Timer timer;
     static public int P1Score = 0;
     static public int P2Score = 0;
@@ -32,7 +28,7 @@ public class GamePanel extends JPanel implements KeyListener {
         setBackground(Color.BLACK);
         setForeground(Color.BLACK);
         setDoubleBuffered(true);
-        System.setProperty("sun.java2d.d3d", "True");
+        //System.setProperty("sun.java2d.d3d", "True");
         this.game = game;
         ball = new Ball();
         player1 = new Paddle(20, 83, 87);
@@ -48,7 +44,6 @@ public class GamePanel extends JPanel implements KeyListener {
         
         timer.start();
         
-        
         addKeyListener(this);
         setFocusable(true);
     }
@@ -63,6 +58,7 @@ public class GamePanel extends JPanel implements KeyListener {
     }
     
     public void keyPressed(KeyEvent e){
+    	System.out.println("keypressed");
     	player1.pressed(e.getKeyCode());
     	player2.pressed(e.getKeyCode());
     }
@@ -73,6 +69,7 @@ public class GamePanel extends JPanel implements KeyListener {
     }
     
     static public void update(){
+    	//System.out.println("GamePanel.update()");
     	player1.update();
     	player2.update();
     	ball.update();
@@ -93,14 +90,21 @@ public class GamePanel extends JPanel implements KeyListener {
     
     @Override
     public void paintComponent(Graphics g){
-    	super.paintComponent(g);
-    	player1.paint(g);
-    	player2.paint(g);
-    	ball.paint(g);
+    	Graphics2D g2d = (Graphics2D)g;
+    	super.paintComponent(g2d);
+    	g2d.setColor(Color.WHITE);
+    	g2d.drawLine(Pong.getPanel().getWidth()/2,20,Pong.getPanel().getWidth()/2,Pong.getPanel().getHeight()-20);
+    	player1.paint(g2d);
+    	player2.paint(g2d);
+    	ball.paint(g2d);
     }
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		//Unused
-	}    
+	}
+
+	 public static void setGPSize(int w,int h) {
+		 Pong.getPanel().setPreferredSize(new Dimension(w, h));
+    }  
 }

@@ -26,8 +26,6 @@ public class Paddle {
 	}
 	
 	public void update(){
-		
-
 		if(this.equals(GamePanel.getP1())){
 			y = y + P1moveY;
 		} 
@@ -35,7 +33,8 @@ public class Paddle {
 			y = y + P2moveY;
 		} 
 		else {
-		}checkPaddleBounds();
+		}
+		checkPaddleBounds();
 	}
 	
 	public void pressed(int code){
@@ -43,8 +42,7 @@ public class Paddle {
 			GamePanel.P1Score = 0;
 			GamePanel.P2Score = 0;
 			Ball.resetBall();
-			GamePanel.timer.start();
-			//GamePanel.timer.stop();
+			Pong.getPanel().repaint();
 		}
 		
 		if(code == space && swapper == 1){

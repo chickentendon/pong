@@ -24,8 +24,10 @@ public class GamePanel extends JPanel implements KeyListener {
     public static Timer timer;
     static public int p1Score = 0;
     static public int p2Score = 0;
-	Font ttfBase = null;
-	Font ttfFinal = null;
+	Font ttfBaseThin = null;
+	Font ttfBaseItalic = null;
+	Font robotoThin = null;
+	Font robotoItalic = null;
 	static boolean p1Win = false, p2Win = false;
 	static String winText;
 
@@ -37,8 +39,12 @@ public class GamePanel extends JPanel implements KeyListener {
         //Imports custom font for scorekeeping
         try {
     		InputStream myStream = new BufferedInputStream(new FileInputStream("Roboto-Thin.ttf"));
-    		ttfBase = Font.createFont(Font.TRUETYPE_FONT, myStream);
-    		ttfFinal = ttfBase.deriveFont(Font.PLAIN, 350);
+    		ttfBaseThin = Font.createFont(Font.TRUETYPE_FONT, myStream);
+    		robotoThin = ttfBaseThin.deriveFont(Font.PLAIN, 350);
+    		
+    		InputStream myStream1 = new BufferedInputStream(new FileInputStream("Roboto-Italic.ttf"));
+    		ttfBaseItalic = Font.createFont(Font.TRUETYPE_FONT, myStream1);
+    		robotoItalic = ttfBaseItalic.deriveFont(Font.PLAIN, 16);
     	} catch (Exception ex) {
             ex.printStackTrace();
             System.err.println("Font not loaded.");
@@ -78,7 +84,6 @@ public class GamePanel extends JPanel implements KeyListener {
     
     //Handles the movement of the paddles 
     public void keyPressed(KeyEvent e) {
-    	System.out.println(e.getKeyCode());
     	player1.pressed(e.getKeyCode());
     	player2.pressed(e.getKeyCode());
     }
@@ -134,28 +139,43 @@ public class GamePanel extends JPanel implements KeyListener {
     //Paint function for all
     @Override
     public void paintComponent(Graphics g) {
-    	
     	Graphics2D g2d = (Graphics2D)g;
+    	
     	g2d.setRenderingHint(
     	        RenderingHints.KEY_TEXT_ANTIALIASING,
-    	        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+    	        RenderingHints.VALUE_TEXT_ANTIALIAS_ON); //Anti-aliasing for string drawing
+    	
     	super.paintComponent(g2d);
     	
-    	
     	g2d.setColor(Color.GRAY); //Color of text
-    	g2d.setFont(ttfFinal);	  //Custom font
+    	g2d.setFont(robotoThin);	  //Custom font
     	
     	//Sets size and position of scores
     	g2d.drawString(p1Score + "", 75 , 375); 
     	g2d.drawString(p2Score + "", 435, 375);
-    	g2d.setFont(ttfBase.deriveFont(Font.BOLD, 18));
-    	g2d.drawString("[N] starts new game. [space] starts/pauses the game", 100, 475);
+    	
+    	//Draws new game and pause instructions 
+    	g2d.setFont(robotoItalic); //Change font
+    	g2d.drawString("[N] starts new game     [SPACE] toggles pause", 200, 480);
+    	
     	g2d.setColor(Color.WHITE); //Color and painting of mid-line
+    	//Draw midline
     	g2d.drawLine(Pong.getPanel().getWidth()/2,20,Pong.getPanel().getWidth()/2,Pong.getPanel().getHeight()-20);
     	
-    	//Paints all components
+    	//Paints paddles
     	player1.paint(g2d);
     	player2.paint(g2d);
+    	
+    	//Sets font and draws up/down controls on paddles
+    	g2d.setFont(ttfBaseItalic.deriveFont(Font.PLAIN, 14));
+    	g2d.setColor(Color.GRAY);
+    	g2d.drawString("W", (getP1().getX()) + 1, getP1().getY() + 15);
+    	g2d.drawString("S", (getP1().getX() + 3), getP1().getY() + getP1().getHeight() - 5 );
+    	g2d.setFont(new Font("SansSerif", Font.BOLD, 20));
+    	g2d.drawString("\u21E1", (getP2().getX()), getP2().getY() + 20);
+    	g2d.drawString("\u21E3", (getP2().getX()), getP2().getY() + getP2().getHeight() - 5);
+    	
+    	//paints ball
     	ball.paint(g2d);
     }
 

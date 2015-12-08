@@ -2,26 +2,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-
-
 public class Ball {
+	
 	private static double x;
 	private static double y;
 	private int width = 15;
 	double xi = 1; 
 	double yi = 1;
-	double lineX = 0;
-	double lineY = 0;
 	
-	/*
-	 * Constructor for the Ball
-	 * sets the position and the size
-	 */
+	//Constructor for the ball, sets initial position -> (x,y) centered
 	public Ball() {
 		x = ((Pong.WIDTH - 13) / 2);
 		y = ((Pong.HEIGHT) / 2);
-		lineX = x;
-		lineY = y;
 	}
 	
 	//Moves the ball and checks all the bounds
@@ -51,17 +43,16 @@ public class Ball {
 	public void checkPaddles() {
 		//Storing two Rectangles to check the paddle bounds
 		Rectangle p1Bounds = new Rectangle(GamePanel.getP1().getX(),GamePanel.getP1().getY(), 
-				GamePanel.getP1().getWidth(), GamePanel.getP1().getHeight());	
+											GamePanel.getP1().getWidth(), GamePanel.getP1().getHeight());	
 
 		Rectangle p2Bounds = new Rectangle(GamePanel.getP2().getX(),GamePanel.getP2().getY(), 
-				GamePanel.getP2().getWidth(), GamePanel.getP2().getHeight());
+											GamePanel.getP2().getWidth(), GamePanel.getP2().getHeight());
 		
 		//Stores the bounds to the ball to compare it to the paddles
-		Rectangle ballBounds = new Rectangle((int)GamePanel.getBall().x, (int) GamePanel.getBall().y, GamePanel.getBall().width, GamePanel.getBall().width);
+		Rectangle ballBounds = new Rectangle((int)GamePanel.getBall().x, (int)GamePanel.getBall().y, 
+													GamePanel.getBall().width, GamePanel.getBall().width);
 		
-		
-		//Checking Paddle 2, if it is in contact swap directions
-		if (p2Bounds.intersects(ballBounds)) {
+		if (p2Bounds.intersects(ballBounds)) { //Checking Paddle 2, if it is in contact swap directions
 			xi = -1;
 		}
 		//Checking Paddle 1, if it is in contact swap directions
@@ -74,12 +65,10 @@ public class Ball {
 	public void checkForScore() {
 		if(GamePanel.getBall().x > 700) {
 			GamePanel.increaseScore(1);
-			System.out.println("Player 1 : " + GamePanel.p1Score + "\nPlayer 2 : " + GamePanel.p2Score +"\n");
 			resetBall();
 		}
 		else if(GamePanel.getBall().x < 5) {
 			GamePanel.increaseScore(2);
-			System.out.println("Player 1 : " + GamePanel.p1Score + "\nPlayer 2 : " + GamePanel.p2Score + "\n");
 			resetBall();
 		}
 	}

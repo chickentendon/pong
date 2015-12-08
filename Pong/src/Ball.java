@@ -10,6 +10,8 @@ public class Ball {
 	private int width = 15;
 	double xi = 1; 
 	double yi = 1;
+	double lineX = 0;
+	double lineY = 0;
 	
 	/*
 	 * Constructor for the Ball
@@ -18,6 +20,8 @@ public class Ball {
 	public Ball() {
 		x = ((Pong.WIDTH - 13) / 2);
 		y = ((Pong.HEIGHT) / 2);
+		lineX = x;
+		lineY = y;
 	}
 	
 	//Moves the ball and checks all the bounds

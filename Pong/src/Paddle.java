@@ -150,5 +150,6 @@ public class Paddle {
 	public void paint(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.fillRect(x, y, width, height);
+		
 	}
 }

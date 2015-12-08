@@ -15,7 +15,7 @@ public class Ball {
 	 * Constructor for the Ball
 	 * sets the position and the size
 	 */
-	public Ball(){
+	public Ball() {
 		x = ((Pong.WIDTH - 13) / 2);
 		y = ((Pong.HEIGHT) / 2);
 	}
@@ -24,19 +24,18 @@ public class Ball {
 	public void update() {	
 		x += xi;
 		y += yi;		
-		checkSurfaces();	
+		checkSurfaces();
 	}
 	
-	//Calls all the private checks
-	private void checkSurfaces(){
-		//System.out.println("Bottom of ball: " + (GamePanel.getBall().y + 15));
+	//Checks collisions and scores
+	private void checkSurfaces() {
 		checkTopBottom();
 		checkPaddles();
 		checkForScore();
 	}	
 	
 	//Checks the top and bottom to see if the ball is in bounds
-	public void checkTopBottom(){
+	public void checkTopBottom() {
 		if (y >= Pong.getPanel().getHeight() - width) {  //Check Bottom
 			yi = -1;
 		}
@@ -45,7 +44,7 @@ public class Ball {
 		}
 	}
 	
-	public void checkPaddles(){
+	public void checkPaddles() {
 		//Storing two Rectangles to check the paddle bounds
 		Rectangle p1Bounds = new Rectangle(GamePanel.getP1().getX(),GamePanel.getP1().getY(), 
 				GamePanel.getP1().getWidth(), GamePanel.getP1().getHeight());	
@@ -68,20 +67,16 @@ public class Ball {
 	}
 
 	//Checking to see if there was a score, and if so reset the ball and increase the proper score	
-	public void checkForScore(){
-		if(GamePanel.getBall().x > 700){
+	public void checkForScore() {
+		if(GamePanel.getBall().x > 700) {
 			GamePanel.increaseScore(1);
-			System.out.println("Player 1 : " + GamePanel.P1Score + "\nPlayer 2 : " + GamePanel.P2Score +"\n");
+			System.out.println("Player 1 : " + GamePanel.p1Score + "\nPlayer 2 : " + GamePanel.p2Score +"\n");
 			resetBall();
 		}
-		else if(GamePanel.getBall().x < 5){
+		else if(GamePanel.getBall().x < 5) {
 			GamePanel.increaseScore(2);
-			System.out.println("Player 1 : " + GamePanel.P1Score + "\nPlayer 2 : " + GamePanel.P2Score + "\n");
+			System.out.println("Player 1 : " + GamePanel.p1Score + "\nPlayer 2 : " + GamePanel.p2Score + "\n");
 			resetBall();
-		}
-		else {
-			//Else there was no score and we don't want to do anything.
-			//System.out.println("No Score");
 		}
 	}
 	
@@ -89,12 +84,13 @@ public class Ball {
 	public static void resetBall() {
 		x = ((Pong.getPanel().getWidth() / 2) - 7);
 		y = ((Pong.getPanel().getHeight() / 2));
+		Paddle.resetPaddles();
 		Paddle.swapper = 1;
 		GamePanel.timer.stop();
 	}
 	
 	//Paints the ball as it moves
-	public void paint(Graphics g){		
+	public void paint(Graphics g) {		
 		g.setColor(Color.RED);
 		g.fillRect((int)this.x,  (int)this.y, width, width);
 	}

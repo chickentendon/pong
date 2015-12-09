@@ -156,7 +156,7 @@ public class GamePanel extends JPanel implements KeyListener {
     	
     	//Draws new game and pause instructions 
     	g2d.setFont(robotoItalic); //Change font
-    	g2d.drawString("[N] starts new game     [SPACE] toggles pause", 200, 480);
+    	g2d.drawString("[N] starts new game     [SPACE] to serve", 200, 480);
     	
     	g2d.setColor(Color.WHITE); //Color and painting of mid-line
     	//Draw midline

@@ -7,8 +7,10 @@ public class Ball {
 	private static double x;
 	private static double y;
 	private int width = 15;
-	double xi = 1; 
-	double yi = 1;
+	static double xi = 0.75; 
+	static double yi = 0.75;
+	static double speed;
+	static double speedTotal = 0;
 	
 	//Constructor for the ball, sets initial position -> (x,y) centered
 	public Ball() {
@@ -53,11 +55,23 @@ public class Ball {
 													GamePanel.getBall().width, GamePanel.getBall().width);
 		
 		if (p2Bounds.intersects(ballBounds)) { //Checking Paddle 2, if it is in contact swap directions
-			xi = -1;
+			if (speed > 0){
+				speed *= -1;
+			}
+			speed -= 0.05;
+			speedTotal += 0.05;
+			xi = -1 + speed;
+			
+			
 		}
 		//Checking Paddle 1, if it is in contact swap directions
 		if (p1Bounds.intersects(ballBounds)) {
-			xi = 1;
+			if (speed < 0){
+				speed *= -1;
+			}
+			speed += 0.05;
+			speedTotal += 0.05;
+			xi = 1 + speed;
 		}
 	}
 
@@ -65,12 +79,24 @@ public class Ball {
 	public void checkForScore() {
 		if(GamePanel.getBall().x > 700) {
 			GamePanel.increaseScore(1);
+			resetSpeed();
 			resetBall();
 		}
 		else if(GamePanel.getBall().x < 5) {
 			GamePanel.increaseScore(2);
+			resetSpeed();
 			resetBall();
 		}
+	}
+	
+	public static void resetSpeed() {
+		if (speed < 0) {
+			xi += speedTotal;
+		} else if (speed > 0) {
+			xi -= speedTotal;
+		}
+		speed = 0;
+		speedTotal = 0;
 	}
 	
 	//Private helper to reset the ball back to the center
@@ -79,6 +105,7 @@ public class Ball {
 		y = ((Pong.getPanel().getHeight() / 2));
 		Paddle.resetPaddles();
 		Paddle.swapper = 1;
+		resetSpeed();
 		GamePanel.timer.stop();
 	}
 	

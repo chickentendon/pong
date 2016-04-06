@@ -147,7 +147,7 @@ public class GamePanel extends JPanel implements KeyListener {
     	
     	super.paintComponent(g2d);
     	
-    	g2d.setColor(Color.GRAY); //Color of text
+    	g2d.setColor(Color.darkGray); //Color of text
     	g2d.setFont(robotoThin);	  //Custom font
     	
     	//Sets size and position of scores
@@ -155,10 +155,14 @@ public class GamePanel extends JPanel implements KeyListener {
     	g2d.drawString(p2Score + "", 435, 375);
     	
     	//Draws new game and pause instructions 
+    	g2d.setFont(ttfBaseItalic.deriveFont(Font.PLAIN, 13));
+    	g2d.setColor(Color.gray); //Color of text
+    	g2d.drawString("First to   5 wins", 306, 470);
     	g2d.setFont(robotoItalic); //Change font
-    	g2d.drawString("[N] starts new game     [SPACE] to serve", 200, 480);
+    	g2d.drawString("[N] starts new game     [SPACE] to serve", 200, 490);
     	
     	g2d.setColor(Color.WHITE); //Color and painting of mid-line
+    	
     	//Draw midline
     	g2d.drawLine(Pong.getPanel().getWidth()/2,20,Pong.getPanel().getWidth()/2,Pong.getPanel().getHeight()-20);
     	
